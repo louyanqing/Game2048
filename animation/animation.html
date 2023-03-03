@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> 小动画 </title>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" href="animation.css"/>
+		<script>
+			function $(id){
+				return document.getElementById(id);
+			}
+			//已知
+			var target=800;//目标位置
+			var steps=100;//总步数
+			var duration=5000;//总时间ms
+			//计算
+			var interval=duration/steps;//每步的时间间隔
+			var step=(target-100)/steps;//每步的步长
+
+			//任务_1步
+			function moveStep(){
+				var left=parseInt(getComputedStyle($("d1")).left);//获取#d1的left样式属性
+																  //parrseInt去掉单位px
+				$("d1").style.left=left+step+"px";//设置
+				steps--;
+				steps==0&&(clearInterval(timer),steps=100);
+			}
+			var timer=null;
+			window.onload=function(){
+				timer=setInterval(moveStep,interval);
+
+			}
+		</script>
+	</head>
+	<body> 
+		<div id="d1"></div>
+		<div id="d2"></div>
+		<div id="d3"></div>
+		<div id="d4"></div>
+	</body>
+</html>
